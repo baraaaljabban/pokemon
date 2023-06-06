@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pokemon/features/home/home_page.dart';
+import 'package:pokemon/features/login/presentation/pages/login_page.dart';
 import 'package:pokemon/features/start_up/presentation/pages/start_up_page.dart';
 
 class NavRouter {
@@ -27,12 +29,12 @@ class NavRouter {
         );
       case loginRoute:
         return _pageRoute(
-          const Text("Login Page"),
+          const LoginPage(),
           settings,
         );
       case landingRoute:
         return _pageRoute(
-          const Text("Home Page"),
+          const HomePage(),
           settings,
         );
       case pokemonDetails:
