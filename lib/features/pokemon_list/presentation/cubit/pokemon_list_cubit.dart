@@ -11,7 +11,7 @@ class PokemonListCubit extends Cubit<PokemonListState> {
       : _fetchPokemonList = fetchPokemonList,
         super(PokemonListInitial());
   List<Pokemon> pokemons = [];
-
+  List<Pokemon> favorite = [];
   void fetchPokemonListDispatcher() async {
     emit(PokemonListLoadingState());
     final result = await _fetchPokemonList.call(params: null);
@@ -24,5 +24,13 @@ class PokemonListCubit extends Cubit<PokemonListState> {
         emit(PokemonListSuccessState(pokemons: pokemons)),
       },
     );
+  }
+
+  void addToFavorite({required Pokemon pokemon, required bool isToAdd}) {
+    if (isToAdd) {
+      favorite.add(pokemon);
+    } else {
+      favorite.remove(pokemon);
+    }
   }
 }

@@ -5,9 +5,11 @@ import 'package:pokemon/features/pokemon_list/presentation/widgets/pokemon_card.
 
 class PokemonsListViewController extends StatefulWidget {
   final List<Pokemon> pokemons;
+  final bool showFavIcon;
   const PokemonsListViewController({
     Key? key,
     required this.pokemons,
+    this.showFavIcon = true,
   }) : super(key: key);
 
   @override
@@ -26,6 +28,7 @@ class _PokemonsListViewControllerState extends State<PokemonsListViewController>
         itemBuilder: (context, index) {
           return PokemonCard(
             pokemon: widget.pokemons[index],
+            showFavIcon: widget.showFavIcon,
           );
         },
       ),

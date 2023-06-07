@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pokemon/core/navigation/nav_args.dart';
 import 'package:pokemon/features/login/presentation/pages/login_page.dart';
 import 'package:pokemon/features/pokemon_details/presentation/pages/pokemon_deatils_page.dart';
+import 'package:pokemon/features/pokemon_list/presentation/pages/favorite_page.dart';
 import 'package:pokemon/features/pokemon_list/presentation/pages/pokemons_page.dart';
 import 'package:pokemon/features/start_up/presentation/pages/start_up_page.dart';
 
@@ -11,8 +12,8 @@ class NavRouter {
   static const String initialRoute = '/';
   static const String landingRoute = '/home';
   static const String loginRoute = '/login';
-
   static const String pokemonDetails = '/pokemonDetails';
+  static const String favorite = '/favorite';
 
   static MaterialPageRoute _pageRoute(Widget page, settings, {bool fullScreenDialog = false}) {
     return MaterialPageRoute(
@@ -42,6 +43,11 @@ class NavRouter {
       case pokemonDetails:
         return _pageRoute(
           PokemonDetailsPage(args: settings.arguments as PokemonDetailsArgs),
+          settings,
+        );
+      case favorite:
+        return _pageRoute(
+          const FavoritePage(),
           settings,
         );
       default:
