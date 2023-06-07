@@ -1,5 +1,5 @@
-class JobDetailsArgs {
-  final String jobId;
+class PokemonDetailsArgs {
+  final int pokemonId;
 
-  JobDetailsArgs({required this.jobId});
+  PokemonDetailsArgs({required this.pokemonId});
 }

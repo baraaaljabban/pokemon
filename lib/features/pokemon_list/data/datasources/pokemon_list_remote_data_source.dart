@@ -1,8 +1,7 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:pokemon/core/errors/error_handler.dart';
+import 'package:pokemon/core/network/graphql_client.dart';
 import 'package:pokemon/features/pokemon_list/data/models/pokemon_response.dart';
-
-import '../../../../core/dependency_registrar/shared_dep.dart';
-import '../../../../core/errors/error_handler.dart';
 
 abstract class PokemonListRemoteDataSource {
   Future<PokemonResponse> fetchPokemonList();

@@ -1,38 +1,24 @@
 import 'dart:convert';
 
+import 'package:pokemon/features/pokemon_list/domain/entities/pokemon.dart';
+
 class PokemonResponse {
-  Data data;
+  List<PokemonV2Pokemon> pokemonV2Pokemon;
 
   PokemonResponse({
-    required this.data,
+    required this.pokemonV2Pokemon,
   });
 
   factory PokemonResponse.fromMap(Map<String, dynamic> map) {
     return PokemonResponse(
-      data: Data.fromMap(map['data']),
+      pokemonV2Pokemon: List<PokemonV2Pokemon>.from(map['pokemon_v2_pokemon']?.map((x) => PokemonV2Pokemon.fromMap(x))),
     );
   }
 
   factory PokemonResponse.fromJson(String source) => PokemonResponse.fromMap(json.decode(source));
 }
 
-class Data {
-  List<PokemonV2Pokemon> pokemonV2Pokemon;
-
-  Data({
-    required this.pokemonV2Pokemon,
-  });
-
-  factory Data.fromMap(Map<String, dynamic> map) {
-    return Data(
-      pokemonV2Pokemon: List<PokemonV2Pokemon>.from(map['pokemon_v2_pokemon']?.map((x) => PokemonV2Pokemon.fromMap(x))),
-    );
-  }
-
-  factory Data.fromJson(String source) => Data.fromMap(json.decode(source));
-}
-
-class PokemonV2Pokemon {
+class PokemonV2Pokemon extends Pokemon {
   String name;
   int id;
   int baseExperience;
@@ -41,7 +27,11 @@ class PokemonV2Pokemon {
     required this.name,
     required this.id,
     required this.baseExperience,
-  });
+  }) : super(
+          baseExperience: baseExperience,
+          id: id,
+          name: name,
+        );
 
   factory PokemonV2Pokemon.fromMap(Map<String, dynamic> map) {
     return PokemonV2Pokemon(
