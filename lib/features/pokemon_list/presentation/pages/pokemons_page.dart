@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokemon/core/helper/snack_bar_helper.dart';
+import 'package:pokemon/core/navigation/nav_router.dart';
+import 'package:pokemon/core/navigation/navigation_service.dart';
 import 'package:pokemon/core/theme/theme_color.dart';
 import 'package:pokemon/features/pokemon_list/presentation/cubit/pokemon_list_cubit.dart';
 import 'package:pokemon/features/pokemon_list/presentation/widgets/app_drawer_controller.dart';
@@ -14,7 +16,7 @@ class PokemonsPage extends StatefulWidget {
 }
 
 class _PokemonsPageState extends State<PokemonsPage> with SnackBarHelper {
-  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -33,10 +35,12 @@ class _PokemonsPageState extends State<PokemonsPage> with SnackBarHelper {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: ThemeColor.brandBackground,
-        child: Icon(
+        child: const Icon(
           Icons.add,
         ),
-        onPressed: () {},
+        onPressed: () {
+          navigationService.navigateTo(NavRouter.newPokemon);
+        },
       ),
       drawer: AppDrawer(scaffoldKey: _scaffoldKey),
       backgroundColor: ThemeColor.backgroundSecondary,
@@ -52,7 +56,7 @@ class _PokemonsPageState extends State<PokemonsPage> with SnackBarHelper {
               child: CircularProgressIndicator(),
             );
           } else if (state is PokemonListSuccessState) {
-            return PokemonsListViewController(pokemons: state.pokemons);
+            return const PokemonsListViewController();
           }
           return Container();
         },
