@@ -70,7 +70,9 @@ class _PokemonsPageState extends State<PokemonsPage> with SnackBarHelper {
               child: CircularProgressIndicator(),
             );
           } else if (state is PokemonListSuccessState) {
-            return const PokemonsListViewController();
+            return PokemonsListViewController(
+              pokemons: state.pokemons,
+            );
           }
           return Container();
         },

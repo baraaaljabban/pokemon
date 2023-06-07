@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:pokemon/features/pokemon_list/domain/entities/pokemon.dart';
-import 'package:pokemon/features/pokemon_list/presentation/cubit/pokemon_list_cubit.dart';
 import 'package:pokemon/features/pokemon_list/presentation/widgets/pokemon_card.dart';
 
 class PokemonsListViewController extends StatefulWidget {
   final bool showFavIcon;
+  final List<Pokemon> pokemons;
   const PokemonsListViewController({
     Key? key,
     this.showFavIcon = true,
+    required this.pokemons,
   }) : super(key: key);
 
   @override
@@ -21,31 +21,21 @@ class _PokemonsListViewControllerState extends State<PokemonsListViewController>
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 16),
-      child: BlocSelector<PokemonListCubit, PokemonListState, List<Pokemon>>(
-        selector: (state) {
-          return widget.showFavIcon
-              ? BlocProvider.of<PokemonListCubit>(context).pokemons
-              : BlocProvider.of<PokemonListCubit>(context).favorite;
-        },
-        builder: (context, state) {
-          if (state.isEmpty) {
-            return const Center(
+      child: widget.pokemons.isEmpty
+          ? const Center(
               child: Text("No Data were found."),
-            );
-          }
-          return ListView.builder(
-            shrinkWrap: true,
-            itemCount: state.length,
-            scrollDirection: Axis.vertical,
-            itemBuilder: (context, index) {
-              return PokemonCard(
-                pokemon: state[index],
-                showFavIcon: widget.showFavIcon,
-              );
-            },
-          );
-        },
-      ),
+            )
+          : ListView.builder(
+              shrinkWrap: true,
+              itemCount: widget.pokemons.length,
+              scrollDirection: Axis.vertical,
+              itemBuilder: (context, index) {
+                return PokemonCard(
+                  pokemon: widget.pokemons[index],
+                  showFavIcon: widget.showFavIcon,
+                );
+              },
+            ),
     );
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokemon/features/pokemon_list/domain/entities/pokemon.dart';
 import 'package:pokemon/features/pokemon_list/presentation/cubit/pokemon_list_cubit.dart';
-import 'package:pokemon/features/pokemon_list/presentation/widgets/pokemon_card.dart';
+import 'package:pokemon/features/pokemon_list/presentation/widgets/pokemons_list_view_controller.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
   @override
@@ -35,25 +35,10 @@ class CustomSearchDelegate extends SearchDelegate {
         return BlocProvider.of<PokemonListCubit>(context).filteredPokemons;
       },
       builder: (context, state) {
-        if (state.isEmpty) {
-          return const Center(
-            child: Text(
-              "No Results Found.",
-            ),
-          );
-        } else {
-          return ListView.builder(
-            shrinkWrap: true,
-            itemCount: state.length,
-            scrollDirection: Axis.vertical,
-            itemBuilder: (context, index) {
-              return PokemonCard(
-                pokemon: state[index],
-                showFavIcon: false,
-              );
-            },
-          );
-        }
+        return PokemonsListViewController(
+          pokemons: state,
+          showFavIcon: false,
+        );
       },
     );
   }
