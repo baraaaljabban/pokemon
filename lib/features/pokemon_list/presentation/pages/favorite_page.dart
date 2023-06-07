@@ -26,7 +26,7 @@ class _FavoritePageState extends State<FavoritePage> {
           return BlocProvider.of<PokemonListCubit>(context).favorite;
         },
         builder: (context, state) {
-          return PokemonsListViewController(showFavIcon: false);
+          return const PokemonsListViewController(showFavIcon: false);
         },
       ),
     );
