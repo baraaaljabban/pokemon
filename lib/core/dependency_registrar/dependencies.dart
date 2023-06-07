@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:pokemon/core/dependency_registrar/pokemon_details_dep.dart';
 import 'package:pokemon/core/dependency_registrar/start_up.dart';
 
 import 'login_dep.dart';
@@ -12,4 +13,5 @@ Future<void> slInit() async {
   registerStartUpDep();
   registerLoginDeps();
   registerPokemonListDeps();
+  registerPokemonDetailsDeps();
 }
