@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokemon/features/pokemon_list/domain/entities/pokemon.dart';
 import 'package:pokemon/features/pokemon_list/domain/usecases/fetch_pokemon_list.dart';
@@ -12,6 +11,9 @@ class PokemonListCubit extends Cubit<PokemonListState> {
         super(PokemonListInitial());
   List<Pokemon> pokemons = [];
   List<Pokemon> favorite = [];
+  String _pokemonName = '';
+  String _pokemonExperience = '';
+
   void fetchPokemonListDispatcher() async {
     emit(PokemonListLoadingState());
     final result = await _fetchPokemonList.call(params: null);
@@ -31,6 +33,25 @@ class PokemonListCubit extends Cubit<PokemonListState> {
       favorite.add(pokemon);
     } else {
       favorite.remove(pokemon);
+    }
+  }
+
+  void pokemonName({required String pokemonName}) {
+    _pokemonName = pokemonName;
+  }
+
+  void pokemonExperience({required String pokemonExperience}) {
+    _pokemonExperience = pokemonExperience;
+  }
+
+  void addNewPokemon() {
+    if (_pokemonName.isEmpty || _pokemonExperience.isEmpty) {
+      emit(const PokemonListErrorState(message: "make sure you entered both texts"));
+    } else {
+      pokemons.insert(0, Pokemon(name: _pokemonName, id: 1, baseExperience: int.tryParse(_pokemonExperience) ?? 0));
+      _pokemonName = '';
+      _pokemonExperience = '';
+      emit(PokemonListSuccessState(pokemons: pokemons));
     }
   }
 }
