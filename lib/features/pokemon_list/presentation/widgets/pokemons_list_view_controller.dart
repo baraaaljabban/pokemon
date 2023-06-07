@@ -28,6 +28,11 @@ class _PokemonsListViewControllerState extends State<PokemonsListViewController>
               : BlocProvider.of<PokemonListCubit>(context).favorite;
         },
         builder: (context, state) {
+          if (state.isEmpty) {
+            return const Center(
+              child: Text("No Data were found."),
+            );
+          }
           return ListView.builder(
             shrinkWrap: true,
             itemCount: state.length,
