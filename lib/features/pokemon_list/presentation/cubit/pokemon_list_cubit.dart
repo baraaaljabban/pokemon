@@ -11,6 +11,7 @@ class PokemonListCubit extends Cubit<PokemonListState> {
         super(PokemonListInitial());
   List<Pokemon> pokemons = [];
   List<Pokemon> favorite = [];
+  List<Pokemon> filteredPokemons = [];
   String _pokemonName = '';
   String _pokemonExperience = '';
 
@@ -53,5 +54,12 @@ class PokemonListCubit extends Cubit<PokemonListState> {
       _pokemonExperience = '';
       emit(PokemonListSuccessState(pokemons: pokemons));
     }
+  }
+
+  void filterPokemons(String searchQuery) {
+    filteredPokemons = pokemons.where((pokemon) {
+      final name = pokemon.name.toLowerCase();
+      return name.contains(searchQuery);
+    }).toList();
   }
 }
