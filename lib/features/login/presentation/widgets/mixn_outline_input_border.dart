@@ -11,7 +11,7 @@ mixin LoginOutlineInputBorder {
     );
   }
 
-  OutlineInputBorder foucuseBorder() {
+  OutlineInputBorder focuseBorder() {
     return OutlineInputBorder(
       borderSide: const BorderSide(color: ThemeColor.buttonBackground, width: AppDimensions.one),
       borderRadius: BorderRadius.circular(AppDimensions.xs),

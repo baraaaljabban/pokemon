@@ -1,5 +1,4 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:pokemon/core/errors/exceptions.dart';
 import 'package:pokemon/core/network/connection_checker.dart';
 
 class MyGraphQLClient extends GraphQLClient {

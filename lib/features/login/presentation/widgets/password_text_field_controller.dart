@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokemon/features/login/presentation/widgets/mixn_outline_input_border.dart';
 
-import '../../../../core/theme/app_syle.dart';
+import '../../../../core/theme/app_style.dart';
 import '../bloc/login_bloc.dart';
 
 class PasswordTextField extends StatefulWidget {
@@ -24,7 +24,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> with LoginOutline
   @override
   Widget build(BuildContext context) {
     return BlocSelector<LoginBloc, LoginState, LoginState>(
-      selector: (isLooginButtonEnabled) {
+      selector: (isLoginButtonEnabled) {
         return BlocProvider.of<LoginBloc>(context).state;
       },
       builder: (context, state) {
@@ -32,7 +32,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> with LoginOutline
           enabled: state != LoginLoadingState(),
           style: AppStyle.largeRegular,
           decoration: InputDecoration(
-            focusedBorder: foucuseBorder(),
+            focusedBorder: focuseBorder(),
             enabledBorder: enableBorder(),
             disabledBorder: enableBorder(),
             label: Text(

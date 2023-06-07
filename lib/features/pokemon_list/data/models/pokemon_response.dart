@@ -1,3 +1,5 @@
+// ignore_for_file: annotate_overrides, overridden_fields
+
 import 'dart:convert';
 
 import 'package:pokemon/features/pokemon_list/domain/entities/pokemon.dart';

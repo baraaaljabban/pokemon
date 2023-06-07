@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/theme/app_dimensions.dart';
-import '../../../../core/theme/app_syle.dart';
+import '../../../../core/theme/app_style.dart';
 import '../../../../core/theme/theme_color.dart';
 import '../bloc/login_bloc.dart';
 import 'loading_screen.dart';
@@ -59,7 +59,7 @@ class _LoginButtonControllerState extends State<LoginButtonController> {
                     );
                   } else {
                     return BlocSelector<LoginBloc, LoginState, bool>(
-                      selector: (isLooginButtonEnabled) {
+                      selector: (isLoginButtonEnabled) {
                         return BlocProvider.of<LoginBloc>(context).enableLoginButton;
                       },
                       builder: (context, state) {
