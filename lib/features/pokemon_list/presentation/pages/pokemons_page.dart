@@ -7,6 +7,7 @@ import 'package:pokemon/core/theme/theme_color.dart';
 import 'package:pokemon/features/pokemon_list/presentation/cubit/pokemon_list_cubit.dart';
 import 'package:pokemon/features/pokemon_list/presentation/widgets/app_drawer_controller.dart';
 import 'package:pokemon/features/pokemon_list/presentation/widgets/pokemons_list_view_controller.dart';
+import 'package:pokemon/features/pokemon_list/presentation/widgets/search_deleget.dart';
 
 class PokemonsPage extends StatefulWidget {
   const PokemonsPage({super.key});
@@ -17,10 +18,15 @@ class PokemonsPage extends StatefulWidget {
 
 class _PokemonsPageState extends State<PokemonsPage> with SnackBarHelper {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  TextEditingController _searchController = TextEditingController();
 
   @override
   void initState() {
     BlocProvider.of<PokemonListCubit>(context).fetchPokemonListDispatcher();
+    _searchController.addListener(() {
+      final searchQuery = _searchController.text.toLowerCase();
+      BlocProvider.of<PokemonListCubit>(context).filterPokemons(searchQuery);
+    });
     super.initState();
   }
 
@@ -32,6 +38,14 @@ class _PokemonsPageState extends State<PokemonsPage> with SnackBarHelper {
         title: const Text('Pokemon App'),
         centerTitle: true,
         backgroundColor: ThemeColor.brandBackground,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              showSearch(context: context, delegate: CustomSearchDelegate());
+            },
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: ThemeColor.brandBackground,
