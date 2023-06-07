@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokemon/core/dependency_registrar/dependencies.dart';
+import 'package:pokemon/features/pokemon_details/presentation/cubit/pokemon_details_cubit.dart';
 import 'package:pokemon/features/pokemon_list/presentation/cubit/pokemon_list_cubit.dart';
 import 'package:pokemon/features/start_up/presentation/cubit/start_up_cubit.dart';
 
@@ -27,6 +28,9 @@ class _BaseBlocProviderWidgetState extends State<BaseBlocProviderWidget> {
         ),
         BlocProvider<PokemonListCubit>(
           create: (context) => sl.get<PokemonListCubit>(),
+        ),
+        BlocProvider<PokemonDetailsCubit>(
+          create: (context) => sl.get<PokemonDetailsCubit>(),
         ),
       ],
       child: widget.child,

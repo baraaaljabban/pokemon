@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pokemon/core/navigation/nav_args.dart';
 import 'package:pokemon/features/login/presentation/pages/login_page.dart';
+import 'package:pokemon/features/pokemon_details/presentation/pages/pokemon_deatils_page.dart';
 import 'package:pokemon/features/pokemon_list/presentation/pages/pokemons_page.dart';
 import 'package:pokemon/features/start_up/presentation/pages/start_up_page.dart';
 
@@ -39,7 +41,7 @@ class NavRouter {
         );
       case pokemonDetails:
         return _pageRoute(
-          const Text("pokemon Details Page"),
+          PokemonDetailsPage(args: settings.arguments as PokemonDetailsArgs),
           settings,
         );
       default:

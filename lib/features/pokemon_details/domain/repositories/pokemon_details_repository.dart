@@ -4,6 +4,6 @@ import 'package:pokemon/features/pokemon_details/domain/entities/pokemon_details
 
 abstract class PokemonDetailsRepository {
   Future<Either<Failure, PokemonDetails>> fetchPokemonDetails({
-    required String PokemonId,
+    required int pokemonId,
   });
 }
