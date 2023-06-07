@@ -29,9 +29,7 @@ class _PokemonCardState extends State<PokemonCard> {
           onTap: () => {
             navigationService.navigateTo(
               NavRouter.pokemonDetails,
-              arguments: PokemonDetailsArgs(
-                pokemonId: widget.pokemon.id,
-              ),
+              arguments: PokemonDetailsArgs(pokemonId: widget.pokemon.id, pokemonName: widget.pokemon.name),
             ),
           },
           leading: SizedBox(
